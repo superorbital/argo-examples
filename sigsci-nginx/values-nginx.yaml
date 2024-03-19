@@ -1,0 +1,48 @@
+controller:
+    # Replaces the default nginx-controller image with a custom image that contains the Signal Sciences nginx Module
+    image:
+      repository: signalsciences/sigsci-nginx-ingress-controller
+      tag: "1.9.4"
+      digest: "sha256:324d5b6fc494cec7239b161c39a7f5756cb9c76641c5c02987a75829cf500b3f"
+      pullPolicy: IfNotPresent
+
+    # Load module and set sigsci_agent_host
+    config:
+      main-snippet: load_module /usr/lib/nginx/modules/ngx_http_sigsci_module.so;
+      http-snippet: sigsci_agent_host unix:/sigsci/tmp/sigsci.sock;
+
+    # Disabling the LoadBalancer Service as ArgoCD keeps the App Health as Progressing due to it
+    service:
+      enabled: false
+
+    # Loads sidecar Signal Sciences Agent
+    extraContainers:
+      - name: sigsci-agent
+        image: signalsciences/sigsci-agent:latest
+        volumeMounts:
+        - name: sigsci-tmp
+          mountPath: /sigsci/tmp
+
+        # Sets Signal Sciences Agent keys
+        env:
+        - name: SIGSCI_RPC_ADDRESS
+          value: unix:/sigsci/tmp/sigsci.sock
+        envFrom:
+        - secretRef:
+            name: application-secret
+
+        lifecycle:
+          preStop:
+            exec:
+              command:
+                - sleep
+                - "30"
+
+    # Mounts shared volume for sigsci.sock file
+    extraVolumeMounts:
+      - name: sigsci-tmp
+        mountPath: /sigsci/tmp
+
+    extraVolumes:
+      - name: sigsci-tmp
+        emptyDir: {}
