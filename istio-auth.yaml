@@ -11,7 +11,7 @@ spec:
   source:
     path: istio-auth/overlays/prod
     repoURL: https://github.com/superorbital/argo-examples.git
-    targetRevision: main
+    targetRevision: argocd-istio-again
   syncPolicy:
     automated: {}
     syncOptions:
