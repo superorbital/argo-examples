@@ -9,6 +9,8 @@ helmCharts:
     releaseName: istio-base
     repo: https://istio-release.storage.googleapis.com/charts
     namespace: istio-system
+    valuesInline:
+      defaultRevision: default
   - name: istiod
     releaseName: istiod
     repo: https://istio-release.storage.googleapis.com/charts
