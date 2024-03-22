@@ -7,3 +7,4 @@ resources:
 
 patches:
   - path: istio-configmap.yaml
+  - path: external-secret.yaml
