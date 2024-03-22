@@ -13,10 +13,10 @@ helmCharts:
     repo: https://istio-release.storage.googleapis.com/charts
     namespace: istio-system
 
-resources:
-- ../../base
-- agent-auth.yaml
-
-patches:
-  - path: istio-configmap.yaml
-  - path: external-secret.yaml
+# resources:
+# - ../../base
+# - agent-auth.yaml
+#
+# patches:
+#   - path: istio-configmap.yaml
+#   - path: external-secret.yaml
