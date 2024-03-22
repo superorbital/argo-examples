@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - ../../base
+- agent-auth.yaml
 
-# patches:
-#   - path: external-secret.yaml
+patches:
+  - path: istio-configmap.yaml
