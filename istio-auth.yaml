@@ -3,7 +3,15 @@ kind: Application
 metadata:
   name: istio-auth
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
+  ignoreDifferences:
+  - group: admissionregistration.k8s.io
+    kind: ValidatingWebhookConfiguration
+    name: istiod-default-validator
+    jqPathExpressions:
+    - .webhooks[0].failurePolicy # gets updated by istiod dynamically
   destination:
     namespace: application
     server: https://kubernetes.default.svc
