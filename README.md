@@ -11,6 +11,7 @@ in different configurations.
 In order to install these Argo applications, you must set up the following dependencies:
 
 - [ArgoCD](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/)
+  - Argocd must be initialized with the following configuration: `kustomize.buildOptions: --enable-helm`
 - [External Secrets Operator (ESO)](https://external-secrets.io/latest/introduction/getting-started/)
 
 External secrets operator can be synced as an Argo application using [this ArgoCD Application](./external-secrets.yaml).
