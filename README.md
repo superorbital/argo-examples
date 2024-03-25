@@ -13,7 +13,7 @@ In order to install these Argo applications, you must set up the following depen
 - [ArgoCD](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/)
 - [External Secrets Operator (ESO)](https://external-secrets.io/latest/introduction/getting-started/)
 
-External secrets operator can be synced as an Argo application.
+External secrets operator can be synced as an Argo application using [this ArgoCD Application](./external-secrets.yaml).
 
 Override the `external-secret.yaml` provided in this repository with your own external secrets implementation
 depending on [your secret provider](https://external-secrets.io/latest/provider/aws-secrets-manager/).
