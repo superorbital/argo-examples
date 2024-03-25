@@ -106,6 +106,8 @@ kind: AuthorizationPolicy
 metadata:
   name: ext-authz
   namespace: application
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   selector:
     matchLabels:
@@ -125,6 +127,8 @@ kind: Telemetry
 metadata:
   name: mesh-default
   namespace: istio-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   accessLogging:
     - providers:
