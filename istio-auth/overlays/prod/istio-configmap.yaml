@@ -30,13 +30,13 @@ data:
     extensionProviders:
       - name: "sigsci-agent-ext-authz"
         envoyExtAuthzGrpc:
-          service: "sigsci-agent.default.svc.cluster.local"
+          service: "sigsci-agent.application.svc.cluster.local"
           port: "9999"
           timeout: 0.2s
           failOpen: true
       - name: "sigsci-agent-access-log"
         envoyHttpAls:
-          service: "sigsci-agent.default.svc.cluster.local"
+          service: "sigsci-agent.application.svc.cluster.local"
           port: "9999"
           additionalRequestHeadersToLog:
           - "x-sigsci-request-id"
